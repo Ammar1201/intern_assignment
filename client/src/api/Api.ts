@@ -44,10 +44,21 @@ export const addUserReq = async (user: User) => {
 export const updateUserReq = async (user: User, userId: string) => {
   try {
     const res = await Api.patch(`/users/${userId}`, user);
-    // const res = await Api.patch(`/users/`);
     return res.data;
   }
   catch (err: any) {
+    console.log(err);
+    return err.message;
+  }
+};
+
+export const removeUserReq = async (userId: string) => {
+  try {
+    const res = await Api.delete(`/users/${userId}`);
+    return res.data;
+  }
+  catch (err: any) {
+    console.log(err);
     return err.message;
   }
 };

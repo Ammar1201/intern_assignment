@@ -13,15 +13,18 @@ const UpdateUser = () => {
     name: '',
     phone: '',
     event_date: '',
-    location: ''
+    location: '',
+    LeadStatus: 0,
+    status_name: ''
   });
 
   const handleSearchUser = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
     const foundUser = await getSpecificUserReq(userId);
-    if (foundUser.message === undefined) {
+    if (foundUser[0].id) {
       setUser(foundUser);
+      setInputs(prevState => { return { ...prevState, event_date: foundUser[0].event_date } });
       setShowUpdateForm(true);
     }
     else {
@@ -33,8 +36,9 @@ const UpdateUser = () => {
   const handleUpdateUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    inputs.LeadStatus = user[0].LeadStatus || 0;
     const updatedUser = await updateUserReq(inputs, userId);
-    if (updatedUser._id) {
+    if (updatedUser[0].id) {
       setMessage('User updated successfully!');
       setShowUpdateForm(false);
       setInputs({
@@ -42,7 +46,9 @@ const UpdateUser = () => {
         name: '',
         phone: '',
         event_date: '',
-        location: ''
+        location: '',
+        LeadStatus: 0,
+        status_name: ''
       });
       setUser([]);
     }
@@ -73,9 +79,9 @@ const UpdateUser = () => {
       case 'location':
         setInputs(prevState => { return { ...prevState, location: target.value } });
         break;
-      // case 'LeadStatus':
-      //   setInputs(prevState => { return { ...prevState, LeadStatus: target.value } });
-      //   break;
+      case 'LeadStatus':
+        setInputs(prevState => { return { ...prevState, status_name: target.value } });
+        break;
       default:
         break;
     }
@@ -100,27 +106,27 @@ const UpdateUser = () => {
       {showUpdateForm && <form className={classes.form} onSubmit={handleUpdateUser}>
         <div className={classes.formGroup} >
           <label htmlFor="email">Email:</label>
-          <input id='email' type="email" name="email" required value={user[0].email} onChange={handleInputsChange} onFocus={handleResetMessage} />
+          <input id='email' type="email" name="email" placeholder={user[0]?.email} value={inputs.email} onChange={handleInputsChange} onFocus={handleResetMessage} />
         </div>
         <div className={classes.formGroup} >
           <label htmlFor="name">Name:</label>
-          <input id='name' type="text" name="name" required value={user[0].name} onChange={handleInputsChange} onFocus={handleResetMessage} />
+          <input id='name' type="text" name="name" placeholder={user[0]?.name} value={inputs.name} onChange={handleInputsChange} onFocus={handleResetMessage} />
         </div>
         <div className={classes.formGroup} >
           <label htmlFor="phone">Phone:</label>
-          <input id='phone' type="text" name="phone" required value={user[0].phone} onChange={handleInputsChange} onFocus={handleResetMessage} />
+          <input id='phone' type="text" name="phone" placeholder={user[0]?.phone} value={inputs.phone} onChange={handleInputsChange} onFocus={handleResetMessage} />
         </div>
         <div className={classes.formGroup} >
           <label htmlFor="event_date">Event Date:</label>
-          <input id='event_date' type="date" name="event_date" required value={user[0].event_date} onChange={handleInputsChange} onFocus={handleResetMessage} />
+          <input id='event_date' type="date" name="event_date" value={inputs.event_date} onChange={handleInputsChange} onFocus={handleResetMessage} />
         </div>
         <div className={classes.formGroup} >
           <label htmlFor="location">Location:</label>
-          <input id='location' type="text" name="location" required value={user[0].location} onChange={handleInputsChange} onFocus={handleResetMessage} />
+          <input id='location' type="text" name="location" placeholder={user[0]?.location} value={inputs.location} onChange={handleInputsChange} onFocus={handleResetMessage} />
         </div>
         <div className={classes.formGroup} >
           <label htmlFor="LeadStatus">LeadStatus:</label>
-          <input id='LeadStatus' type="text" name="LeadStatus" required value={user[0].LeadStatus} onChange={handleInputsChange} onFocus={handleResetMessage} />
+          <input id='LeadStatus' type="text" name="LeadStatus" placeholder={user[0]?.status_name} value={inputs.status_name} onChange={handleInputsChange} onFocus={handleResetMessage} />
         </div>
         <input type="submit" value='Update' />
       </form>}

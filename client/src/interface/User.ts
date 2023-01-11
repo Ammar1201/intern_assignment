@@ -5,5 +5,6 @@ export interface User {
   event_date: string,
   email: string,
   location: string,
-  LeadStatus?: number
+  LeadStatus?: number,
+  status_name?: string
 }

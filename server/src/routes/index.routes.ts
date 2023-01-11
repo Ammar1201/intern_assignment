@@ -8,8 +8,8 @@ router.use('/users', usersRoute);
 
 router.get('/leads', async (req, res) => {
   const db = await connect();
-  const users = await db.query('SELECT * FROM LeadStatus');
-  return res.status(200).json(users[0]);
+  const leads = await db.query('SELECT * FROM LeadStatus');
+  return res.status(200).json(leads[0]);
 });
 
 export default router;
