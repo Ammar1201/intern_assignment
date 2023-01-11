@@ -1,0 +1,13 @@
+CREATE DATABASE node_mysql_ts;
+
+CREATE TABLE user(
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  event_date VARCHAR(20) NOT NULL,
+  email VARCHAR(20) NOT NULL,
+  location VARCHAR(20) NOT NULL,
+  LeadStatus INT(1)
+);
+
+DESCRIBE Lead;

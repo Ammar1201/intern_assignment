@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container h3 {
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.message {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.form label {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.form input {
+  padding: 1rem;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.form input[type="submit"] {
+  font-size: 2rem;
+  border: 1px solid black;
+  background-color: black;
+  color: #fff;
+  padding: 1rem 2rem;
+  margin: 20px 0;
+}
