@@ -7,6 +7,9 @@ const Header = () => {
       <nav>
         <ul>
           <li>
+            <NavLink className={(headerData) => headerData.isActive ? classes.active : ''} to='/allUsers'>Show All Users</NavLink>
+          </li>
+          <li>
             <NavLink className={(headerData) => headerData.isActive ? classes.active : ''} to='/addUser'>Add User</NavLink>
           </li>
           <li>

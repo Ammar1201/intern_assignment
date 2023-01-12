@@ -11,7 +11,7 @@ const Api = axios.create({
   baseURL: myUrl,
 });
 
-export const getUsersReq = async () => {
+export const getAllUsersReq = async () => {
   try {
     const res = await Api.get('/users');
     return res.data;

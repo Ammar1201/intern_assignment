@@ -34,7 +34,7 @@ export const addUser = async (req: Request, res: Response): Promise<Response> =>
 
   let status_name = null;
 
-  if (newUser.status_name) {
+  if (newUser.status_name || newUser.status_name === '') {
     status_name = newUser.status_name;
     delete newUser.status_name;
   }
